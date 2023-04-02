@@ -1,0 +1,66 @@
+#include <DRV8835MotorShield.h>
+
+/*
+ * This example uses the DRV8835MotorShield library to try seven possible states of movement with the
+ * Pololu DRV8835 Dual Motor Driver Shield. 
+ */
+
+DRV8835MotorShield motors;
+
+int speed;
+void setup()
+{  
+  // uncomment one or both of the following lines if your motors' directions need to be flipped
+  //motors.flipM1(true);
+  //motors.flipM2(true);
+}
+
+void loop()
+{
+  // set speed at a value
+  
+  speed = 200; 
+   
+  // run motors with positive speed
+
+  motors.setM1Speed(speed);
+  motors.setM2Speed(speed);  
+  delay(2000);
+  
+   // run motors with negative speed
+   
+  motors.setM1Speed(-speed);
+  motors.setM2Speed(-speed);  
+  delay(2000);
+
+  // turn left with positive speed
+  
+  motors.setM1Speed(0);
+  motors.setM2Speed(speed);  
+  delay(2000);
+
+  // turn right with positive speed
+  
+  motors.setM1Speed(speed);
+  motors.setM2Speed(0);  
+  delay(2000);
+
+// spin left with positive speed
+  
+  motors.setM1Speed(-speed);
+  motors.setM2Speed(speed);  
+  delay(2000);  
+
+// spin right with positive speed
+  
+  motors.setM1Speed(speed);
+  motors.setM2Speed(-speed);  
+  delay(2000);  
+
+// stpo both motors
+  
+  motors.setM1Speed(0);
+  motors.setM2Speed(0);  
+  delay(2000);  
+}  
+  
