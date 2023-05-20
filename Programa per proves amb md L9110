@@ -12,24 +12,36 @@ byte velocidad = 160;
 // cambie este valor (100 a 255) para controlar 
 // la velocidad de los motores 
 
+int incomingInstr = 0; // for incoming serial instructions
+
 void setup() {
   pinMode(AIA, OUTPUT); // fijar los pines como salidas
   pinMode(AIB, OUTPUT);
   pinMode(BIA, OUTPUT);
   pinMode(BIB, OUTPUT);
+  Serial.begin(9600); // opens serial port, sets data rate to 9600 bps
 }
 
 void loop() {
-  izquierda();
-  delay(2000);
-  derecha();
-  delay(2000);
-  avanzar();
-  delay(500);
-  retroceder();
-  delay(1000);
-  avanzar();
-  delay(500);
+
+// reply only when you receive data:
+  if (Serial.available() > 0) {
+    // read the incoming instruction:
+    incomingInstruction = Serial.read();
+     switch (incomingInstruction) {
+        case A:
+           avanzar();
+           break;
+        case R:
+           retroceder();
+           break;
+        case I:
+           izquierda();
+           break;
+        case D:
+           derecha();
+           break;
+    }
 }
 
 void avanzar()
