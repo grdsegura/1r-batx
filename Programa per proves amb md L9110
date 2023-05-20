@@ -12,7 +12,9 @@ byte velocidad = 160;
 // cambie este valor (100 a 255) para controlar 
 // la velocidad de los motores 
 
-int incomingInstr = 0; // for incoming serial instructions
+int incomingInstruction = 0; // for incoming serial instructions
+
+const char A,R,D,I;
 
 void setup() {
   pinMode(AIA, OUTPUT); // fijar los pines como salidas
@@ -32,16 +34,17 @@ void loop() {
         case A:
            avanzar();
            break;
-        case R:
+        case "R":
            retroceder();
            break;
-        case I:
+        case "I":
            izquierda();
            break;
-        case D:
+        case "D":
            derecha();
            break;
     }
+  }  
 }
 
 void avanzar()
