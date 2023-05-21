@@ -12,9 +12,7 @@ byte velocidad = 160;
 // cambie este valor (100 a 255) para controlar 
 // la velocidad de los motores 
 
-int incomingInstruction = 0; // for incoming serial instructions
-
-const char A,R,D,I;
+char incomingInstruction = ''; // for incoming serial instructions
 
 void setup() {
   pinMode(AIA, OUTPUT); // fijar los pines como salidas
@@ -31,7 +29,7 @@ void loop() {
     // read the incoming instruction:
     incomingInstruction = Serial.read();
      switch (incomingInstruction) {
-        case A:
+        case 'A':
            avanzar();
            break;
         case "R":
